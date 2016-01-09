@@ -1,0 +1,270 @@
+using System;
+
+namespace Razakhan_Mohammad_Functions_Assignment
+{
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			/*
+			 * Mohammad Raza Khan
+			 * November 19, 2015
+			 * Function Assignment
+			 * Section 03
+			*/
+
+			//Start of Function Assignment (Discount for qualified customers)
+
+			/*Assign discount value variables
+			 * Member Discount = 20%
+			 * Senior Discount = 15%
+			 * Military Discount = 10%
+			 * Student Discount = 12%
+			*/
+
+			//Tell the user about the program
+			Console.WriteLine ("Hello! Let's find out the total amount after discounts for qualified customers only.\r\nPlease enter the total purchase");
+
+			//Include the currency value
+			Console.Write ("$");
+
+			//Create a variable to hold the converted value
+			decimal custTotal;
+
+			//Create customers extra discount, customer apperciation discount 
+			decimal extraDis = .08m;
+
+			//Catch the users respond
+			string customersTotalString = Console.ReadLine ();
+
+			//Confirm the users response
+			while (!decimal.TryParse (customersTotalString, out custTotal)) {
+
+				//Notify the user about the problem
+				Console.WriteLine ("Please do not leave this blank and type in numbers only.\r\nPlease enter the total purchase?");
+
+				//Include the currency value
+				Console.Write ("$");
+
+				//Recatch the users value
+				customersTotalString = Console.ReadLine ();
+			}
+
+			//Ask the user if the customer is the store member, a senior, or in military
+			Console.WriteLine ("Please choose the discount type for the customer? Type in the assigned number and hit enter.\r\nType 1 for a Member discount only\r\nType 2 for a Senior discount\r\nType 3 for a Military discount\r\nType 4 for a Student discount\r\nType any other number for no discount");
+	
+				//customer type value variable
+			string customTypeString = Console.ReadLine();
+				
+			//Create a varaiable to catch the users response
+			int customType;
+
+			//While loop to prompt the user
+			while (!int.TryParse(customTypeString, out customType)) {
+
+				//Prompt the user about the problem
+				Console.WriteLine ("Please make a choice! Using numbers only.\r\nType 1 for a Member discount only\r\nType 2 for a Senior discount\r\nType 3 for a Military discount\r\nType 4 for a Student discount\r\nType any other number for no discount");
+
+				//Recatch the users answer
+				customTypeString = Console.ReadLine ();
+			}
+
+			//Create a function to calculate a military discount offer only
+			//Use ElseIf statements to determine the type of discount
+
+			//If member discount
+			if (customType == 1) {
+
+				//Member discount value
+				decimal memDis = .08m;
+
+				//Function call and save the value
+				decimal singleDisTotal = SingleDiscountOnly (custTotal, memDis);
+
+				//Prompt the customers total
+				Console.WriteLine ("The customer total is ${0}, with a member discount the total of the customer is ${1}.", custTotal, singleDisTotal);
+
+				//If senior discount
+			} else if (customType == 2) {
+
+				//Senior discount value
+				decimal senDis = .15m;
+
+				//Function call and save the value
+				decimal singleDisTotal = SingleDiscountOnly (custTotal, senDis);
+
+				//report single discount value
+				Console.WriteLine ("The customer total is ${0}, with a senior discount the total of the customer is ${1}.", custTotal, singleDisTotal);
+
+
+				//Ask if the customer is a member, and wants to add member discount
+				Console.WriteLine ("Add member discount?\r\nType in 1 and hit enter to add member discount.\r\nType in any other number for no member discount.");
+
+				//Catch the users respond
+				string extraMemberSenString = Console.ReadLine ();
+
+				//Catch the choice in a double
+				int extraMemSenDis;
+					
+				//Report the use if no choice has been made
+				while (!int.TryParse (extraMemberSenString, out extraMemSenDis)) {
+
+					//Prompt the user to enter a choice in numbers
+					Console.WriteLine ("Please enter a choice in numbers");
+					//Recatch the value
+					extraMemberSenString = Console.ReadLine ();
+				
+			}
+					//Decide if the user added member discount
+				if (extraMemSenDis == 1) {
+
+					//Function call multiple discount
+					//Function call and save the value
+					decimal multiDisTotal = MultiDiscountOnly (custTotal, senDis, extraDis);
+
+					//Report out the multiple discount
+					Console.WriteLine ("The customer total is ${0}, with a senior discount and additional member discount total of the customer is ${1}.", custTotal, multiDisTotal);
+				}
+				
+				//If military discount
+			} else if (customType == 3) {
+
+				//Military discount value
+				decimal milDis = .10m;
+
+				//Function call and save the value
+				decimal singleDisTotal = SingleDiscountOnly (custTotal, milDis);
+
+				//Report single discount value
+				Console.WriteLine ("The customer total is ${0}, with a military discount the total of the customer is ${1}.", custTotal, singleDisTotal);
+	
+
+				//Ask if the customer is a member, and wants to add member discount
+				Console.WriteLine("Add member discount?\r\nType in 1 and hit enter to add member discount.\r\nType in any other number for no member discount.");
+
+				//Catch the users respond
+				string extraMemberMilString = Console.ReadLine ();
+
+				//Catch the choice in a double
+				int extraMemMilDis;
+
+				//Report the use if no choice has been made
+				while (!int.TryParse(extraMemberMilString, out extraMemMilDis)){
+
+					//Prompt the user to enter a choice in numbers
+					Console.WriteLine ("Please enter a choice in numbers");
+					//Recatch the value
+					extraMemberMilString = Console.ReadLine ();
+				}
+
+				//Decide if the user added member discount
+				if (extraMemMilDis == 1) {
+
+					//Function call multiple discount
+					//Function call and save the value
+					decimal multiDisTotal = MultiDiscountOnly (custTotal, milDis, extraDis);
+
+					//Report out multiple discount total
+					Console.WriteLine ("The customer total is ${0}, with a military discount and additional member discount total of the customer is ${1}.", custTotal, multiDisTotal);
+
+					//If student discount
+				}
+
+			} else if (customType == 4) {
+
+					//Student discount value
+					decimal stuDis = .12m;
+
+				//Function call and save the value
+				decimal singleDisTotal = SingleDiscountOnly (custTotal, stuDis);
+
+				Console.WriteLine ("The customer total is ${0}, with a student discount the total of the customer is ${1}.", custTotal, singleDisTotal);
+
+			
+				//Ask if the customer is a member, and wants to add member discount
+				Console.WriteLine("Add member discount?\r\nType in 1 and hit enter to add member discount.\r\nType in any other number for no member discount.");
+
+				//Catch the users respond
+				string extraMemberStuString = Console.ReadLine ();
+
+				//Catch the choice in a double
+				int extraMemStuDis;
+				
+					//Prompt the user to make a choice
+				while (!int.TryParse(extraMemberStuString, out extraMemStuDis)){
+
+					//Prompt the user to enter a choice in numbers
+					Console.WriteLine ("Please enter a choice in numbers");
+					//ReCatch the users respond
+					extraMemberStuString = Console.ReadLine ();
+				}
+
+					//Decide if the user added member discount
+				if (extraMemStuDis == 1) {
+
+					//Function call multiple discount
+					//Function call and save the value
+					decimal multiDisTotal = MultiDiscountOnly (custTotal, stuDis, extraDis);
+
+					//Report out multiple total of discounts
+					Console.WriteLine ("The customer total is ${0}, with a student discount and additional member discount total of the customer is ${1}.", custTotal, multiDisTotal);
+				}
+					//No discount
+				} else {
+
+				//Variable for no discount
+				decimal noDis = 1;
+
+				//Function call and save the value
+				decimal singleDisTotal = SingleDiscountOnly (custTotal, noDis);
+					
+				//Report out without discount
+				Console.WriteLine ("The customer total is ${0}", custTotal);
+					}	
+						
+				//End of Percentage calculation
+
+
+					/* Tested and check!
+						Entered total purchase amount= $92.80
+						Choose a Student discount= 12%
+						Without additional member discount the total= $81.66
+						With additiona member discount the total = $74.24
+						
+						Calculate and the result is the same!
+
+					*/
+
+		}	
+		public static decimal SingleDiscountOnly(decimal toPerch, decimal disPer)
+		{
+
+			//Math work for a single discount
+			decimal DisTotal = toPerch*disPer;
+
+			//Subtracting the discount total from the total purchase
+			decimal singDisTotal = toPerch-DisTotal;
+
+			//Return the value
+			return singDisTotal;
+			
+			} 
+
+		public static decimal MultiDiscountOnly (decimal toPerch, decimal dis1, decimal dis2)
+		{
+
+			//Math work for a multiple discount
+			//calculate first discount
+			decimal totalDis = dis2 + dis1;
+
+			//calculate the second discount rate
+			decimal discTotal= toPerch * totalDis;
+
+			//Adding the total discounts
+			decimal result = toPerch -discTotal;
+		
+			//Return the value
+			return result; 
+		}
+	}
+}
