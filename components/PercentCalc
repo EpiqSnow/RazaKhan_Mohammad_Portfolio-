@@ -264,7 +264,7 @@ namespace Razakhan_Mohammad_Functions_Assignment
 			decimal result = toPerch -discTotal;
 		
 			//Return the value
-			return result; 
+			return results; 
 		}
 	}
 }
